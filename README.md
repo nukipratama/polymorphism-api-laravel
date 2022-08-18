@@ -19,9 +19,22 @@ A simple project using polymorphism relationship in Laravel. This project demons
 | `age` | `integer` | Optional. Filter results based on matching candidate age.|
 
 
-
-
 ## Installation
+
+Clone the project
+```bash
+  git clone https://github.com/nukipratama/polymorphism-api-laravel
+```
+
+Go to the project directory
+```bash
+  cd polymorphism-api-laravel
+```
+
+Install dependencies
+```bash
+  composer install
+```
 
 Create database with your preferred database name and assign the name to .env file. 
 ```bash
@@ -31,11 +44,6 @@ DB_PORT=5432
 DB_DATABASE=polymorphic_api
 DB_USERNAME=postgres
 DB_PASSWORD=root
-```
-
-Install required dependecies using composer
-```bash
-composer install
 ```
 
 Run migration for creating required tables.
@@ -52,29 +60,3 @@ Run project locally
 ```bash
 php artisan serve
 ```
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/nukipratama/polymorphism-api-laravel
-```
-
-Go to the project directory
-
-```bash
-  cd polymorphism-api-laravel
-```
-
-Install dependencies
-
-```bash
-  composer install
-```
-
-Start the server
-
-```bash
-  php artisan serve
-```
-

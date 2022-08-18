@@ -46,6 +46,11 @@ DB_USERNAME=postgres
 DB_PASSWORD=root
 ```
 
+Generate Application Key
+```bash
+php artisan key:generate
+```
+
 Run migration for creating required tables.
 ```bash
 php artisan migrate

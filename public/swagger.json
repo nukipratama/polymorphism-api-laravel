@@ -1,0 +1,207 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Polymorphic Api Laravel",
+    "description": "A simple project using polymorphism relationship in Laravel. This project demonstrate on how to perform Many-to-Many relationship between tables in polymorphism.",
+    "contact": {
+      "name": "Nuki Pratama",
+      "url": "https://github.com/nukipratama/polymorphism-api-laravel"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:8000/api/v1"
+    }
+  ],
+  "paths": {
+    "/candidate": {
+      "get": {
+        "summary": "List Candidates",
+        "description": "By passing in the appropriate options, you can search for\ncandidates in the system\n",
+        "operationId": "getCandidate",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter results based on similar candidate name.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Filter results based on similar candidate role.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "age",
+            "in": "query",
+            "description": "Filter results based on matching candidate age.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return candidates data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Candidate": {
+        "required": [
+          "age",
+          "created_at",
+          "id",
+          "name",
+          "recruiters",
+          "role",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Nuki Pratama"
+          },
+          "role": {
+            "type": "string",
+            "example": "Backend Developer"
+          },
+          "age": {
+            "type": "integer",
+            "example": 24
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-08-18T10:01:40.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-08-18T10:01:40.000000Z"
+          },
+          "recruiters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Recruiter"
+            }
+          }
+        }
+      },
+      "Recruiter": {
+        "required": [
+          "age",
+          "created_at",
+          "id",
+          "name",
+          "pivot",
+          "role",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Nuki Pratama"
+          },
+          "role": {
+            "type": "string",
+            "example": "Backend Developer"
+          },
+          "age": {
+            "type": "integer",
+            "example": 24
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-08-18T10:01:40.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-08-18T10:01:40.000000Z"
+          },
+          "pivot": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pivot"
+            }
+          }
+        }
+      },
+      "Pivot": {
+        "required": [
+          "candidate_id",
+          "candidaterable_id",
+          "candidaterable_type"
+        ],
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "candidaterable_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "candidaterable_type": {
+            "type": "string",
+            "example": "App\\Models\\Recruiter"
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "example": "success"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Candidate"
+            }
+          }
+        }
+      }
+    }
+  }
+}
